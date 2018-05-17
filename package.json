@@ -1,0 +1,35 @@
+{
+  "name": "ckit",
+  "version": "0.0.1",
+  "description": "Check by schema like proto",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DEBUG=ckit* mocha test/test_*.js",
+	"test-cov": "istanbul cover ./node_modules/.bin/_mocha -- test/test_* --reporter dot",
+    "test-travis": "istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- test/test_* --reporter dot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Bacra/node-ckit.git"
+  },
+  "keywords": [
+    "proto",
+    "check",
+    "schema"
+  ],
+  "author": "Bacra <bacra.woo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.5",
+    "expect.js": "^0.3.1",
+    "mocha": "^5.1.1"
+  },
+  "bugs": {
+    "url": "https://github.com/Bacra/node-ckit/issues"
+  },
+  "homepage": "https://github.com/Bacra/node-ckit"
+}

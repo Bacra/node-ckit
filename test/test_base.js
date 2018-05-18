@@ -6,7 +6,7 @@ describe('#base', function()
 {
 	it('#message', function()
 	{
-		var msg1 = ckit.Message(
+		var msg1 = ckit.message(
 		{
 			a: ckit.required.string,
 			b: ckit.repeated.number,
@@ -15,7 +15,7 @@ describe('#base', function()
 
 		msg1.addMessage('msg1', msg1);
 
-		var msg2 = ckit.Message(
+		var msg2 = ckit.message(
 		{
 			d: msg1.required.string,
 			// 复用原来的定义
@@ -31,7 +31,9 @@ describe('#base', function()
 
 		var msg1_obj_l = {a: 1, b: ['2']};
 		var msg1_obj_r = {a: '1', b: [2], c: 3};
+
 		expect(msg1.check(msg1_obj_l)).to.eql(msg1_obj_r);
-		expect(msg2.check({d: 4, e: msg1_obj_l, f: {g: 'g'}})).to.eql({d: '4', e: msg1_obj_r, f: {g: 'g', h: 'h'}});
+		expect(msg2.check({d: 4, e: msg1_obj_l, f: {g: 'g'}}))
+			.to.eql({d: '4', e: msg1_obj_r, f: {g: 'g', h: 'h'}});
 	});
 });

@@ -42,4 +42,19 @@ describe('#message', function()
 
 		expect(msg2.check({d: 4, e: msg1_obj_l})).to.eql({d: '4', e: msg1_obj_r});
 	});
+
+	it('#new type with config', function()
+	{
+		var msg0 = ckit.message();
+		msg0.addMessage('lt10num', ckit.required.number.max(9));
+
+		var msg1 = ckit.message(
+		{
+			a: msg0.repeated.lt10num
+		});
+
+		expect(msg1.check({a: [1]})).to.eql({a: [1]});
+		expect(function(){msg1.check({a: [11]})})
+			.to.throwError();
+	});
 });

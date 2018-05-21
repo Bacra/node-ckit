@@ -1,6 +1,6 @@
 {
   "name": "ckit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Check by schema like proto",
   "main": "index.js",
   "scripts": {

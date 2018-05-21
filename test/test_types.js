@@ -132,4 +132,33 @@ describe('#message', function()
 			expect(msg.check({a: {b: 1, d: 2}})).to.eql({a: {b: '1', c: 'c'}});
 		});
 	});
+
+	describe('#enum', function()
+	{
+		it('#array', function()
+		{
+			var msg = ckit.message(
+			{
+				a: ckit.required.enum.values([1, '0'])
+			});
+
+			expect(msg.check({a: 1})).to.eql({a: 1});
+			expect(msg.check({a: '0'})).to.eql({a: '0'});
+			expect(function(){msg.check({a: 0})})
+				.to.throwError();
+		});
+
+		it('#object', function()
+		{
+			var msg = ckit.message(
+			{
+				a: ckit.required.enum.values({a: 1, b: '0'})
+			});
+
+			expect(msg.check({a: 'a'})).to.eql({a: 1});
+			expect(msg.check({a: 'b'})).to.eql({a: '0'});
+			expect(function(){msg.check({a: 'c'})})
+				.to.throwError();
+		});
+	});
 });

@@ -1,7 +1,6 @@
 var ckit = require('../');
 var expect = require('expect.js');
 
-
 describe('#message', function()
 {
 	var msg1_def =
@@ -19,6 +18,14 @@ describe('#message', function()
 		var msg1 = ckit.message(msg1_def);
 
 		expect(msg1.check(msg1_obj_l)).to.eql(msg1_obj_r);
+	});
+
+	it('#empty repeated', function()
+	{
+		var msg1 = ckit.message(msg1_def);
+		expect(msg1.check({a: 1})).to.eql({a: '1', b: [], c: 3});
+		expect(msg1.check({a: 1, b: []})).to.eql({a: '1', b: [], c: 3});
+		expect(msg1.check({a: 1, b: '12'})).to.eql({a: '1', b: [], c: 3});
 	});
 
 	it('#submsg', function()

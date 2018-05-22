@@ -31,16 +31,24 @@ describe('#message', function()
 	it('#submsg', function()
 	{
 		var msg0 = ckit.message();
-		msg0.message('msg1', msg1_def);
+		var msg1 = msg0.message('msg1', msg1_def);
 
+		// msg1自动admessage到msg0
 		var msg2 = ckit.message(
 		{
 			d: msg0.required.string,
 			// 复用原来的定义
 			e: msg0.required.msg1,
 		});
-
 		expect(msg2.check({d: 4, e: msg1_obj_l})).to.eql({d: '4', e: msg1_obj_r});
+
+		// 子类一样具有msg1
+		var msg3 = ckit.message(
+		{
+			d: msg1.required.string,
+			e: msg1.required.msg1,
+		});
+		expect(msg3.check({d: 4, e: msg1_obj_l})).to.eql({d: '4', e: msg1_obj_r});
 	});
 
 	it('#new type with config', function()

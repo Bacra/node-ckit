@@ -9,13 +9,14 @@ CKIT
 [![NPM License][license-image]][npm-url]
 
 # Install
+
 ```
 npm install ckit --save
 ```
 
 # Useage
 
-```
+```javascript
 var msg1 = ckit.Message(
 {
     a: ckit.required.string,
